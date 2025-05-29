@@ -31,15 +31,16 @@ type Music struct {
 
 // MusicDTO 是音乐信息的数据传输对象
 type MusicDTO struct {
-	ID        uint      `json:"id"`
-	Name      string    `json:"name"`
-	Artist    string    `json:"artist"`
-	Album     string    `json:"album"`
-	CoverPath string    `json:"cover_path"`
-	Duration  int       `json:"duration"`
-	FileType  string    `json:"file_type"`
-	CreatedAt time.Time `json:"created_at"`
-	UserID    uint      `json:"user_id"`
-	UserName  string    `json:"user_name,omitempty"` // 可从用户服务填充
-	Tags      string    `json:"tags"`
+	ID           uint      `json:"id"`
+	Name         string    `json:"name"`
+	Artist       string    `json:"artist"`
+	Album        string    `json:"album"`
+	CoverPath    string    `json:"cover_path"`
+	ResourcePath string    `gorm:"size:1024" json:"resource_path"`
+	Duration     int       `json:"duration"`
+	FileType     string    `json:"file_type"`
+	CreatedAt    time.Time `json:"created_at"`
+	UserID       uint      `json:"user_id"`
+	UserName     string    `json:"user_name,omitempty"` // 可从用户服务填充
+	Tags         string    `json:"tags"`
 }

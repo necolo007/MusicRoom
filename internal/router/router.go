@@ -8,6 +8,7 @@ import (
 )
 
 func GenerateRouters(r *gin.Engine) *gin.Engine {
+	r.Static("/assets", "./assets")
 	m1 := r.Group("/api/user")
 	{
 		m1.POST("/login", user_handler.LoginHandler)

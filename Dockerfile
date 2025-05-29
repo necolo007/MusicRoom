@@ -1,5 +1,5 @@
 # 构建阶段
-FROM golang:1.23.2-alpine AS builder
+FROM golang:1.24.2-alpine AS builder
 
 WORKDIR /app
 
@@ -28,11 +28,14 @@ RUN apk --no-cache add tzdata ca-certificates
 COPY --from=builder /app/main .
 COPY --from=builder /app/config ./config
 
+# 创建资源目录结构
+RUN mkdir -p /app/assets/music /app/assets/picture /app/assets/lyric
+
 # 设置时区
 ENV TZ=Asia/Shanghai
 
 # 暴露端口
-EXPOSE 12349
+EXPOSE 12345
 
 # 运行应用
 CMD ["./main"]

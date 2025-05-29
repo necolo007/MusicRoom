@@ -92,7 +92,7 @@ func UploadMusic(c *gin.Context) {
 		Album:    album,
 		FilePath: musicFilePath,
 		FileType: fileExt[1:], // 去掉点号
-		FileSize: int64(musicFile.Size),
+		FileSize: musicFile.Size,
 		UserID:   uint(userID),
 		Tags:     tags,
 	}
@@ -188,16 +188,17 @@ func GetMusic(c *gin.Context) {
 
 	// 转换为DTO
 	dto := music_entity.MusicDTO{
-		ID:        music.ID,
-		Name:      music.Name,
-		Artist:    music.Artist,
-		Album:     music.Album,
-		CoverPath: music.CoverPath,
-		Duration:  music.Duration,
-		FileType:  music.FileType,
-		CreatedAt: music.CreatedAt,
-		UserID:    music.UserID,
-		Tags:      music.Tags,
+		ID:           music.ID,
+		Name:         music.Name,
+		Artist:       music.Artist,
+		Album:        music.Album,
+		CoverPath:    music.CoverPath,
+		ResourcePath: music.FilePath,
+		Duration:     music.Duration,
+		FileType:     music.FileType,
+		CreatedAt:    music.CreatedAt,
+		UserID:       music.UserID,
+		Tags:         music.Tags,
 	}
 
 	c.JSON(http.StatusOK, dto)
@@ -265,16 +266,17 @@ func ListMusic(c *gin.Context) {
 	dtos := make([]music_entity.MusicDTO, len(musics))
 	for i, music := range musics {
 		dtos[i] = music_entity.MusicDTO{
-			ID:        music.ID,
-			Name:      music.Name,
-			Artist:    music.Artist,
-			Album:     music.Album,
-			CoverPath: music.CoverPath,
-			Duration:  music.Duration,
-			FileType:  music.FileType,
-			CreatedAt: music.CreatedAt,
-			UserID:    music.UserID,
-			Tags:      music.Tags,
+			ID:           music.ID,
+			Name:         music.Name,
+			Artist:       music.Artist,
+			Album:        music.Album,
+			CoverPath:    music.CoverPath,
+			ResourcePath: music.FilePath,
+			Duration:     music.Duration,
+			FileType:     music.FileType,
+			CreatedAt:    music.CreatedAt,
+			UserID:       music.UserID,
+			Tags:         music.Tags,
 		}
 	}
 
